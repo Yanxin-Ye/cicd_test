@@ -26,7 +26,16 @@ jobs:
 #         with:
 #           project_id: dbk-appops-nonprod
 #           service_account_key: ${{ secrets.JENKINS_NONPROD_GCP_SA }}
+      # Installs code coverage tool (only for tests)
+      - name: pip installs for tests
+        run: |
+          pip install coverage
+          pip install pyspark-test
 
+      - name: Run tests with coverage
+        run: |
+          coverage run --source=dataproc -m unittest discover
+          
       - name: Report
         run: |
           coverage report --show-missing --sort=Cover --skip-empty
