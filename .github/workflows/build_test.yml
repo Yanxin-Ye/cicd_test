@@ -6,8 +6,7 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-
-      - name: Setup python, java and pyspark
+    
       - uses: actions/setup-python@v2
         with:
           python-version: '3.9'
